@@ -1,0 +1,17 @@
+.ellipse {
+  position: fixed;
+  bottom: 0;
+  left: -80px;
+}
+.input {
+  display: flex;
+  width: 274px;
+  height: 44px;
+  border: none;
+  border: 1px solid rgba(91, 91, 91, 1);
+  background: none;
+  border-radius: 6px;
+}
+.input:focus {
+  border: none;
+}

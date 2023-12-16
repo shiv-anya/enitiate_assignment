@@ -7,9 +7,14 @@ export default async function login(email, password) {
   let result = null,
     error = null;
   try {
-    result = await signInWithEmailAndPassword(auth, email, password);
+    const userCredentials = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    result = userCredentials.user;
   } catch (e) {
-    error = e;
+    error = e.message;
   }
 
   return { result, error };

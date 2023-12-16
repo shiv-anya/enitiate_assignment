@@ -10,7 +10,6 @@ const Navbar = () => {
   const ctx = useContext(AuthContext);
   const user = ctx.user;
   const logout = ctx.logout;
-  console.log(user);
   const logoutHandler = () => {
     const auth = getAuth();
     signOut(auth)

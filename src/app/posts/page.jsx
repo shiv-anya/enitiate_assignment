@@ -17,8 +17,7 @@ const Posts = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
   const user = ctx.user;
-  console.log(currentItems);
-  console.log(user);
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };

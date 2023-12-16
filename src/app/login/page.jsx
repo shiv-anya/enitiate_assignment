@@ -1,26 +1,55 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./page.module.css";
 import login from "@/utils/firebase/login";
 import { useRouter } from "next/navigation";
+import Loader from "@/components/Loader";
+import Link from "next/link";
+import StatusMessage from "@/components/StatusMessage";
 
 const Login = (e) => {
+  const [statusType, setStatusType] = useState("error");
+  const [status, setStatus] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
   const router = useRouter();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const [isLogging, setIsLogging] = useState(false);
   const submitHandler = (e) => {
+    setIsLogging(true);
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    const { result, error } = login(email, password);
-    if (error) {
-      alert("Error");
+    if (password.length <= 6) {
+      setIsLogging(false);
+      setStatus(true);
+      setStatusType("warning");
+      setStatusMessage("Password should be greater than 6 characters");
+      return;
     }
-    router.push("/posts");
+    login(email, password).then((data) => {
+      if (data.result) {
+        setIsLogging(false);
+        router.push("/posts");
+      } else {
+        setIsLogging(false);
+        setStatus(true);
+        setStatusType("error");
+        setStatusMessage(data.error);
+      }
+    });
+    setStatus(false);
   };
   return (
     <>
+      {status && (
+        <StatusMessage
+          status={status}
+          message={statusMessage}
+          type={statusType}
+        />
+      )}
       <div className="flex h-[87vh]">
         <div className="flex-1 flex justify-evenly items-center">
           <Image
@@ -71,9 +100,16 @@ const Login = (e) => {
               />
             </div>
             <button className="h-[44px] w-[274px] rounded-[6px] bg-blue-600 mt-12">
-              Login
+              {isLogging && <Loader color="white" />}
+              {!isLogging && <p>Login</p>}
             </button>
           </form>
+          <p className="mt-5">
+            Not Registered!{" "}
+            <Link href="/signup" className="text-blue-600">
+              Sign Up
+            </Link>
+          </p>
         </div>
       </div>
     </>

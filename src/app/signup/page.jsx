@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import classes from "./page.module.css";
 import signUp from "@/utils/firebase/signup";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SignUp = (e) => {
   const router = useRouter();
@@ -13,12 +14,11 @@ const SignUp = (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    const { result, error } = signUp(email, password);
-    if (error) {
-      alert("Error");
-    }
-    console.log(result);
-    router.push("/login");
+    signUp(email, password).then((data) => {
+      if (data.result) {
+        alert(data.error.message);
+      } else router.push("/login");
+    });
   };
   return (
     <>
@@ -79,6 +79,12 @@ const SignUp = (e) => {
               Sign Up
             </button>
           </form>
+          <p className="mt-5">
+            Already Registered!{" "}
+            <Link href="/login" className=" text-blue-600">
+              Login
+            </Link>
+          </p>
         </div>
       </div>
     </>

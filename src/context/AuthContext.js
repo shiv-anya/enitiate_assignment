@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import app from "@/utils/firebase/firebase-config";
+import Loader from "@/components/Loader";
 
 const auth = getAuth(app);
 
@@ -17,7 +18,6 @@ export const AuthContextProvider = ({ children }) => {
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         setUser(user);
         setIsLoggedIn(true);
       } else {
@@ -32,7 +32,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, logout }}>
-      {loading ? <div>Loading...</div> : children}
+      {loading ? <Loader color="blue" /> : children}
     </AuthContext.Provider>
   );
 };

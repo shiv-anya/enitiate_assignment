@@ -7,7 +7,12 @@ export default async function signUp(email, password) {
   let result = null,
     error = null;
   try {
-    result = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredentials = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    result = userCredentials;
   } catch (e) {
     error = e;
   }

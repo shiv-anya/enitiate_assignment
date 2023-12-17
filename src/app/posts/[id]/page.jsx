@@ -55,7 +55,7 @@ const PostInfo = ({ params }) => {
                     height={30}
                     width={20}
                     alt="author"
-                    className="rounded-full mr-2"
+                    className="rounded-full mr-2 object-cover"
                   />
                   <small className="text-gray-300">
                     {Names[post.userId - 1]}

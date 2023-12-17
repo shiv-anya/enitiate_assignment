@@ -51,7 +51,7 @@ const SignUp = (e) => {
           type={statusType}
         />
       )}
-      <div className="flex h-[87vh] max-sm:h-[80vh]">
+      <div className="flex h-[87vh] max-sm:h-[90vh]">
         <div className="flex-1 flex justify-evenly items-center max-lg:hidden max-lg:justify-center">
           <Image
             src="/home-pic.png"
@@ -68,7 +68,7 @@ const SignUp = (e) => {
             className={classes.ellipse}
           />
         </div>
-        <div className="flex-1 flex flex-col justify-center items-center">
+        <div className="flex-1 flex flex-col justify-center items-center max-sm:justify-start max-sm:pt-24">
           <h3 className="text-[26px] mb-12">Sign Up to your account</h3>
           <form className="flex flex-col" onSubmit={submitHandler}>
             <div className={`${classes.input} + mb-5`}>

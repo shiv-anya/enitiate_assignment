@@ -20,10 +20,10 @@ const Post = ({ params, id, title, body, userId }) => {
     <motion.div
       whileHover={{ x: -10, y: -10, scale: 1.05 }}
       transition={{ duration: 0.2 }}
-      className="h-auto my-10 flex justify-between bg-[#080d0d] rounded-[20px] bg-gradient-to-b from-[#173b4d] from-1% to-[#080d0d] to-90% max-sm:w-[500px] max-sm:my-5"
+      className="h-auto my-10 flex justify-between bg-[#080d0d] rounded-[20px] bg-gradient-to-b from-[#173b4d] from-1% to-[#080d0d] to-90% max-sm:w-[100%] max-sm:my-8 max-sm:flex-col max-sm:flex-col-reverse"
       key={id}
     >
-      <div className="w-[600px] p-5">
+      <div className="w-[90%] p-5">
         <h2 className="text-xl">{title}</h2>
         <div className="flex my-2">
           <Image
@@ -40,7 +40,7 @@ const Post = ({ params, id, title, body, userId }) => {
           Read More
         </Link>
       </div>
-      <div className="w-[300px] h-auto relative">
+      <div className="w-[300px] h-auto relative max-sm:w-full max-sm:h-[200px]">
         <Image
           src="https://source.unsplash.com/random"
           alt="random image"

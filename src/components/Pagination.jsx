@@ -14,7 +14,7 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
 
   return (
     <div className="flex justify-center mb-10">
-      <ul className="flex max-md:justify-center max-md:flex-wrap max-md:w-[500px]">
+      <ul className="flex max-md:justify-center max-md:flex-wrap max-md:w-[500px] max-sm:w-[500px]">
         {Array.from({ length: totalPages }).map((_, index) => (
           <li key={index}>
             <motion.button

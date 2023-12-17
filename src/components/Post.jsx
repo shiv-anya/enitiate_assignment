@@ -20,7 +20,7 @@ const Post = ({ params, id, title, body, userId }) => {
     <motion.div
       whileHover={{ x: -10, y: -10, scale: 1.05 }}
       transition={{ duration: 0.2 }}
-      className="h-auto my-10 flex justify-between bg-[#080d0d] rounded-[20px] bg-gradient-to-b from-[#173b4d] from-1% to-[#080d0d] to-90%"
+      className="h-auto my-10 flex justify-between bg-[#080d0d] rounded-[20px] bg-gradient-to-b from-[#173b4d] from-1% to-[#080d0d] to-90% max-sm:w-[500px] max-sm:my-5"
       key={id}
     >
       <div className="w-[600px] p-5">

@@ -51,7 +51,7 @@ const SignUp = (e) => {
           type={statusType}
         />
       )}
-      <div className="flex h-[87vh]">
+      <div className="flex h-[87vh] max-sm:h-[80vh]">
         <div className="flex-1 flex justify-evenly items-center max-lg:hidden max-lg:justify-center">
           <Image
             src="/home-pic.png"

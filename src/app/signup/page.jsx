@@ -1,27 +1,56 @@
 "use client";
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import classes from "./page.module.css";
 import signUp from "@/utils/firebase/signup";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import StatusMessage from "@/components/StatusMessage";
+import Loader from "@/components/Loader";
 
 const SignUp = (e) => {
+  const [statusType, setStatusType] = useState("error");
+  const [status, setStatus] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [isLogging, setIsLogging] = useState(false);
   const router = useRouter();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const submitHandler = (e) => {
     e.preventDefault();
+    setIsLogging(true);
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    if (password.length <= 6) {
+      setIsLogging(false);
+      setStatus(true);
+      setStatusType("warning");
+      setStatusMessage("Password should be greater than 6 characters");
+      return;
+    }
     signUp(email, password).then((data) => {
+      console.log(data);
       if (data.result) {
-        alert(data.error.message);
-      } else router.push("/login");
+        setIsLogging(false);
+        router.push("/posts");
+      } else {
+        setIsLogging(false);
+        setStatus(true);
+        setStatusType("error");
+        setStatusMessage(data.error.message);
+      }
     });
+    setStatus(false);
   };
   return (
     <>
+      {status && (
+        <StatusMessage
+          status={status}
+          message={statusMessage}
+          type={statusType}
+        />
+      )}
       <div className="flex h-[87vh]">
         <div className="flex-1 flex justify-evenly items-center">
           <Image
@@ -52,6 +81,7 @@ const SignUp = (e) => {
                 className="bg-transparent w-full focus:outline-none focus:border-transparent focus:ring-1 focus:ring-transparent text-[13px]"
                 placeholder="jade.smith@gmail.com"
                 ref={emailRef}
+                required
               />
             </div>
             <div className={`${classes.input} + mb-5`}>
@@ -69,14 +99,16 @@ const SignUp = (e) => {
                 className="bg-transparent w-full focus:outline-none focus:border-transparent focus:ring-1 focus:ring-transparent text-[13px]"
                 placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
                 ref={passwordRef}
+                required
               />
             </div>
             <div>
-              <input type="checkbox" className="mr-2" />
-              <label>I agree to the Terms & Conditions</label>
+              <input type="checkbox" className="mr-2" id="terms" />
+              <label htmlFor="terms">I agree to the Terms & Conditions</label>
             </div>
             <button className="h-[44px] w-[274px] rounded-[6px] bg-blue-600 mt-12">
-              Sign Up
+              {isLogging && <Loader color="white" />}
+              {!isLogging && <p>Sign Up</p>}
             </button>
           </form>
           <p className="mt-5">

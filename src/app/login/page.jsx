@@ -80,6 +80,7 @@ const Login = (e) => {
                 className="bg-transparent w-full focus:outline-none focus:border-transparent focus:ring-1 focus:ring-transparent text-[13px]"
                 placeholder="jade.smith@gmail.com"
                 ref={emailRef}
+                required
               />
             </div>
             <div className={`${classes.input} + mb-5`}>
@@ -97,6 +98,7 @@ const Login = (e) => {
                 className="bg-transparent w-full focus:outline-none focus:border-transparent focus:ring-1 focus:ring-transparent text-[13px]"
                 placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
                 ref={passwordRef}
+                required
               />
             </div>
             <button className="h-[44px] w-[274px] rounded-[6px] bg-blue-600 mt-12">

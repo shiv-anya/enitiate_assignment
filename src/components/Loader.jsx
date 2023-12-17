@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Loader.module.css";
 
 const Loader = ({ color }) => {
-  console.log(color);
   return (
     <div className="h-auto w-auto">
       {color === "blue" ? (

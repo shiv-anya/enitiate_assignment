@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { motion } from "framer-motion";
+
 const Names = [
   "Amelia Mitchell",
   "Benjamin Harper",
@@ -15,7 +17,9 @@ const Names = [
 ];
 const Post = ({ params, id, title, body, userId }) => {
   return (
-    <div
+    <motion.div
+      whileHover={{ x: -10, y: -10, scale: 1.05 }}
+      transition={{ duration: 0.2 }}
       className="h-auto my-10 flex justify-between bg-[#080d0d] rounded-[20px] bg-gradient-to-b from-[#173b4d] from-1% to-[#080d0d] to-90%"
       key={id}
     >
@@ -41,10 +45,10 @@ const Post = ({ params, id, title, body, userId }) => {
           src="https://source.unsplash.com/random"
           alt="random image"
           fill={true}
-          className="rounded-r-[20px]"
+          className="rounded-r-[20px] object-cover"
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -14,11 +14,11 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
 
   return (
     <div className="flex justify-center mb-10">
-      <ul className="flex">
+      <ul className="flex max-md:justify-center max-md:flex-wrap max-md:w-[500px]">
         {Array.from({ length: totalPages }).map((_, index) => (
           <li key={index}>
             <motion.button
-              className="w-[30px] h-[30px] mx-1 text-gray-800 bg-gray-200 hover:bg-[#2563eb] hover:text-white focus:outline-none rounded-[50%]"
+              className="w-[30px] h-[30px] mx-1 text-gray-800 bg-gray-200 hover:bg-[#2563eb] hover:text-white focus:outline-none rounded-[50%] focus:bg-[#2563eb] focus:text-white max-md:mb-2"
               onClick={() => handlePageChange(index + 1)}
               whileHover={{ y: -10 }}
               transition={{ duration: 0.2 }}

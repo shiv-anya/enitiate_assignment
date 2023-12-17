@@ -46,16 +46,16 @@ const PostInfo = ({ params }) => {
           <Loader color="blue" />
         ) : (
           <div className="h-auto container mt-80">
-            <div className="flex justify-between mt-10">
-              <div className="flex-1 pr-10">
+            <div className="flex justify-between mt-10 max-md:flex-col max-md:flex-col-reverse">
+              <div className="flex-1 pr-10 max-md:mt-5 max-md:pr-0">
                 <h2 className="text-4xl">{post.title}</h2>
-                <div className="flex my-2">
+                <div className="flex my-5">
                   <Image
                     src="https://source.unsplash.com/person/30*30"
                     height={30}
                     width={20}
                     alt="author"
-                    className="rounded-full mr-2 object-cover"
+                    className="rounded-full mr-2"
                   />
                   <small className="text-gray-300">
                     {Names[post.userId - 1]}
@@ -74,11 +74,12 @@ const PostInfo = ({ params }) => {
                   eligendi asperiores.
                 </p>
               </div>
-              <div className="h-auto w-[300px] relative">
+              <div className="h-auto w-[300px] relative max-md:h-[300px] max-md:w-full">
                 <Image
                   src="https://source.unsplash.com/random"
                   alt="random image"
                   fill={true}
+                  className="object-cover"
                 />
               </div>
             </div>

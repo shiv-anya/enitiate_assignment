@@ -51,7 +51,7 @@ const Login = (e) => {
         />
       )}
       <div className="flex h-[87vh]">
-        <div className="flex-1 flex justify-evenly items-center">
+        <div className="flex-1 flex justify-evenly items-center max-lg:hidden max-lg:justify-center">
           <Image
             src="/home-pic.png"
             height={400}
